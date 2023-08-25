@@ -3,6 +3,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WebApi.Model;
+using WebApi.Utils;
 
 namespace WebApi.Controllers;
 
@@ -18,7 +19,7 @@ public class DishController : ControllerBase
     }
 
     [SwaggerOperation(Summary = "Get dish by id")]
-    [HttpGet]
+    [HttpGet("{id}")]
     public CommonResponse Get(int id)
     {
         var response = _repository.Get(id);

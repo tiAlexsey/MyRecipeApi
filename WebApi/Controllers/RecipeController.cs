@@ -2,6 +2,7 @@ using Domain.Abstract.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WebApi.Model;
+using WebApi.Utils;
 
 namespace WebApi.Controllers;
 
@@ -17,7 +18,7 @@ public class RecipeController : ControllerBase
     }
 
     [SwaggerOperation(Summary = "Get a recipe by id")]
-    [HttpGet]
+    [HttpGet("{idDish}")]
     public CommonResponse Get(int idDish)
     {
         var response = _repository.Get(idDish);
