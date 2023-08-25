@@ -31,7 +31,7 @@ public class DishController : ControllerBase
     [HttpGet("List")]
     public CommonResponse List()
     {
-        var dishes = _repository.GetList();
+        var dishes = _repository.GetList().ToList();
         return new CommonResponse(dishes, dishes.Count);
     }
 

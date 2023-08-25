@@ -16,9 +16,9 @@ public class IngredientRepository : IIngredientRepository
     }
 
     public Ingredient Get(int id) => _repository.Ingredient.FirstOrDefault(x => x.Id == id);
-    public List<Ingredient> GetList() => _repository.Ingredient.ToList();
+    public IEnumerable<Ingredient> GetList() => _repository.Ingredient;
 
-    public bool Add(Ingredient? ingredient)
+    public bool Add(Ingredient ingredient = null!)
     {
         try
         {
@@ -33,7 +33,7 @@ public class IngredientRepository : IIngredientRepository
         }
     }
 
-    public bool Update(Ingredient ing)
+    public bool Update(Ingredient ing = null!)
     {
         try
         {

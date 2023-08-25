@@ -31,8 +31,8 @@ public class IngredientController : ControllerBase
     [HttpGet("List")]
     public CommonResponse GetList()
     {
-        var ings = _repository.GetList();
-        return new CommonResponse(ings, ings.Count);
+        var ingredients = _repository.GetList().ToList();
+        return new CommonResponse(ingredients, ingredients.Count);
     }
 
     [SwaggerOperation(Summary = "Add a new ingredient")]

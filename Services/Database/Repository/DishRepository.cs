@@ -16,9 +16,9 @@ public class DishRepository : IDishRepository
     }
 
     public Dish Get(int id) => _repository.Dish.FirstOrDefault(x => x.Id == id);
-    public List<Dish> GetList() => _repository.Dish.ToList();
+    public IEnumerable<Dish> GetList() => _repository.Dish;
 
-    public bool Add(Dish dish)
+    public bool Add(Dish dish = null!)
     {
         try
         {
@@ -33,7 +33,7 @@ public class DishRepository : IDishRepository
         }
     }
 
-    public bool Update(Dish dish)
+    public bool Update(Dish dish = null!)
     {
         try
         {
