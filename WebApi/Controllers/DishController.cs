@@ -1,5 +1,6 @@
 using Domain.Abstract.Repository;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WebApi.Model;
@@ -7,6 +8,7 @@ using WebApi.Utils;
 
 namespace WebApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class DishController : ControllerBase
