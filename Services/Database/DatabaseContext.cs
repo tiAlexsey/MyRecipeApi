@@ -17,6 +17,7 @@ public partial class DatabaseContext : DbContext
     public DbSet<Ingredient> Ingredient { get; set; } = null!;
     public DbSet<Dish> Dish { get; set; } = null!;
     public DbSet<LinkIngredients> LinkIngredients { get; set; } = null!;
+    public DbSet<User> User { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -27,11 +28,4 @@ public partial class DatabaseContext : DbContext
             optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
         }
     }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        OnModelCreatingPartial(modelBuilder);
-    }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

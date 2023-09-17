@@ -1,6 +1,13 @@
+using System.Text;
+using Domain.Abstract;
 using Domain.Abstract.Repository;
+using Domain.Abstract.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Services.Authentication;
+using Services.Authentication.Config;
 using Services.Database;
 using Services.Database.Repository;
 
@@ -22,6 +29,32 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
 builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
 builder.Services.AddScoped<IDishRepository, DishRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.Configure<JwtConfig>(config.GetSection("JwtSetting"));
+builder.Services.AddScoped<IJwtService, JwtService>();
+
+#region Authentication Service
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(option =>
+{
+    option.SaveToken = true;
+    option.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = config["JwtSetting:Issuer"],
+        ValidAudience = config["JwtSetting:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSetting:Key"]))
+    };
+});
+
+#endregion
 
 #region Swagger Service
 
@@ -67,6 +100,9 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
