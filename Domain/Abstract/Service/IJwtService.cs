@@ -5,5 +5,5 @@ namespace Domain.Abstract.Service;
 
 public interface IJwtService
 {
-    Tokens Authenticate(User users); 
+    Tokens Authenticate(User users);
 }

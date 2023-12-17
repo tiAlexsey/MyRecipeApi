@@ -31,7 +31,7 @@ public class RecipeRepository : IRecipeRepository
     {
         try
         {
-            var newIngr = new LinkIngredients()
+            var newIngr = new LinkIngredients
             {
                 IdDish = idDish,
                 IdIngredient = idIngredient,
@@ -43,7 +43,7 @@ public class RecipeRepository : IRecipeRepository
         }
         catch (Exception e)
         {
-            _logger.LogInformation(e.Message);
+            _logger.LogError(e.Message);
             return false;
         }
     }
@@ -62,7 +62,7 @@ public class RecipeRepository : IRecipeRepository
         }
         catch (Exception e)
         {
-            _logger.LogInformation(e.Message);
+            _logger.LogError(e.Message);
             return false;
         }
     }

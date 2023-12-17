@@ -22,7 +22,7 @@ public class AuthenticationController : ControllerBase
     [HttpPost]
     public IActionResult Authenticate(LoginModel model)
     {
-        var token = _jWtManager.Authenticate(new User()
+        var token = _jWtManager.Authenticate(new User
         {
             Login = model.Login,
             Password = model.Password

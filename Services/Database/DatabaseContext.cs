@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Services.Database;
 
-public partial class DatabaseContext : DbContext
+public class DatabaseContext : DbContext
 {
     public DatabaseContext()
     {

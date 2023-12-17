@@ -13,7 +13,7 @@ namespace WebApi.Controllers;
 [Route("[controller]")]
 public class DishController : ControllerBase
 {
-    private IDishRepository _repository;
+    private readonly IDishRepository _repository;
 
     public DishController(IDishRepository repository)
     {

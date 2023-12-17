@@ -28,7 +28,7 @@ public class IngredientRepository : IIngredientRepository
         }
         catch (Exception e)
         {
-            _logger.LogInformation(e.Message);
+            _logger.LogError(e.Message);
             return false;
         }
     }
@@ -43,7 +43,7 @@ public class IngredientRepository : IIngredientRepository
         }
         catch (Exception e)
         {
-            _logger.LogInformation(e.Message);
+            _logger.LogError(e.Message);
             return false;
         }
     }
@@ -59,7 +59,7 @@ public class IngredientRepository : IIngredientRepository
         }
         catch (Exception e)
         {
-            _logger.LogInformation(e.Message);
+            _logger.LogError(e.Message);
             return false;
         }
     }
